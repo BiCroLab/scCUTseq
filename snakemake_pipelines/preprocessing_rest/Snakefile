@@ -1,0 +1,91 @@
+import glob, os, sys
+
+# Specify config file
+configfile: "config.yaml"
+
+# Specify samples
+samples = glob.glob(config['indir'] + "*R1*fastq.gz")
+
+# Get basename for each sample and split after R1 suffix
+samples = [os.path.basename(sample).split("_R1", 1)[0] for sample in samples]
+
+rule all:
+    input:
+        expand(config['outdir'] + "bamfiles/{sample}.dedup.bam",
+            sample = samples),
+        config['outdir'] + "stats.tsv"
+
+# Map fastq
+if config['method'] == "se":
+    rule bwa_map_se:
+        input:
+            config['ref'],
+            config['indir'] + "{sample}_R1.fastq.gz"
+        output:
+            bam=temp(config['outdir'] + "bamfiles/{sample}.bam"),
+            bai=temp(config['outdir'] + "bamfiles/{sample}.bam.bai")
+        params:
+            rg=r"@RG\tID:{sample}\tSM:{sample}\tPL:ILLUMINA"
+        threads: config['threads']
+        shell:
+            "bwa mem -M -t {threads} -R '{params.rg}' {input} | "
+            "samtools sort -o {output.bam} && "
+            "samtools index -@ {threads} {output.bam}"
+
+elif config['method'] == "pe":
+    rule bwa_map_pe:
+        input:
+            config['ref'],
+            config['indir'] + "{sample}_R1.fastq.gz",
+            config['indir'] + "{sample}_R2.fastq.gz"
+        output:
+            bam=temp(config['outdir'] + "bamfiles/{sample}.bam"),
+            bai=temp(config['outdir'] + "bamfiles/{sample}.bam.bai")
+        params:
+            rg=r"@RG\tID:{sample}\tSM:{sample}\tPL:ILLUMINA"
+        threads: config['threads']
+        shell:
+            "bwa mem -M -t {threads} -R '{params.rg}' {input} | "
+            "samtools sort -o {output.bam} && "
+            "samtools index -@ {threads} {output.bam}"
+else:
+    sys.exit("incorrect sequencing method, "
+             "please select 'se' or 'pe' in config.yaml")
+
+# Mark duplicates
+rule deduplication:
+    input:
+        bam=config['outdir'] + "bamfiles/{sample}.bam",
+    output:
+        bam=protected(config['outdir'] + "bamfiles/{sample}.dedup.bam"),
+        metrics=config['outdir'] + "stats/{sample}.metrics.txt"
+    threads: 4
+    shell:
+        "/home/luukharbers/gatk-4.2.5.0/gatk MarkDuplicates -I {input.bam} -O {output.bam} "
+        "-M {output.metrics}"
+
+# QC post-dedup
+rule aflred_post:
+    input:
+        bam=config['outdir'] + "bamfiles/{sample}.dedup.bam",
+        ref=config['ref']
+    output:
+        config['outdir'] + "stats/{sample}.dedup.tsv.gz"
+    shell:
+        "/home/luukharbers/alfred/bin/alfred qc -r {input.ref} -o {output} "
+        "{input.bam}"
+
+# QC summary
+rule qc:
+    input:
+        expand(config['outdir'] + "stats/{sample}.dedup.tsv.gz",
+            sample = samples)
+    output:
+        config['outdir'] + "stats.tsv"
+    params:
+        dir=config['outdir'] + "stats/"
+    shell:
+        """
+        zgrep ^ME {params.dir}*dedup.tsv.gz | cut -f 2- | \\
+        sed -n '1p;0~2p' > {output}
+        """

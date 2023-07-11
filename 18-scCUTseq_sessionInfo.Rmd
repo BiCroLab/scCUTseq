@@ -1,0 +1,25 @@
+---
+author: "Luuk Harbers"
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::gitbook
+editor_options:
+  chunk_output_type: console
+---
+
+# Session info
+
+```{r}
+sessionInfo()
+```
+
+## Dockerfile
+
+```{r dockerfile}
+require(containerit)
+dockerfile = dockerfile(from = utils::sessionInfo(),
+                        versioned_libs = TRUE,
+                        versioned_packages = TRUE)
+print(dockerfile)
+```
+
+

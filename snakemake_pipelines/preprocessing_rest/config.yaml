@@ -1,0 +1,5 @@
+indir: "/mnt/sequencing/BICRO353/fastq/"
+outdir: "/mnt/sequencing/BICRO353/KLG5_hg19/"
+method: "se"
+threads: 38
+ref: "/mnt/AchTeraD/Documents/references/hg19/hg19.fa"

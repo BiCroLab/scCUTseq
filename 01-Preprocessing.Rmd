@@ -1,0 +1,132 @@
+---
+author: "Luuk Harbers"
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::gitbook
+editor_options:
+  chunk_output_type: console
+---
+
+# Preprocessing
+
+## Demultiplexing of fastq files
+Because scCUTseq libraries consist of, typically, 384 or 96 cells, we need to demultiplex the fastq files based on the cellular barcodes that are contained within the reads.
+We do this using a custom python script. Briefly, we extract the cellular barcode and the UMI and move this information to the read name. Unfortunately, we are not able to share the raw fastq files but the two Python scripts used can be found **here**. This script can be called through the command line and an example of this is as follows:  
+
+```{bash demultiplexing call, eval = FALSE}
+processBarcode.py -i {input_fastq} -o {output_directory} -b {list_of_barcodes} -d {number_of_mismatches} -p {barcoding_pattern} -t {threads} -r {sequencing_type} -v
+```
+
+Below you can find a brief explanation of the different parameters:  
+
+* input_fastq: the path to the input fastq file  
+* output_directory: the path to the output directory  
+* list of barcodes: a text file with each row containing one cellular barcode, an example of this file can be found **here**.  
+* number_of_mismatches: denotes the number of mismatches that a barcode can have to still be assigned to one of the cellular barcodes, this is by default 1 or 2 depending on the length of the barcodes (8 or 11 in our libraries).  
+* barcoding_pattern: The pattern of the barcode/UMI in the reads. This is a character string consisting of U/B/D, denoting which base belongs to the UMI (U), Barcode (B) and recognition site (D). In the case of our 96 and 384 cell libraries either UUUUUUUUBBBBBBBBDDDD or UUUUUUUUBBBBBBBBBBBDDDD, respectively.  
+* threads: Number of threads to use for parallel processing  
+* sequencing_type: Either 'single' or 'paired' depending on sequencing type  
+* v: Verbose processing  
+
+## Adapter trimming
+In the case of paired-end sequencing on fragments that are too short, we do additional adapter trimming. We use `fastp` for this, which is described [here](https://doi.org/10.1002/imt2.107). An example of the command used is as follows:  
+
+```{bash trimming call, eval = FALSE}
+fastp -i {input.fastq1} -I {input.fastq2} -o {output.fastq1} -O {output.fastq2} --detect_adapter_for_pe --cut_front --cut_tail --cut_mean_quality 30
+```
+
+## Aligning of cell specific fastq files
+Following the demultiplexing (and potential trimming) we align the cell specific fastq files to the reference genome, in our case GRCh37. We perform the alignment using `bwa-mem`, piping it into `samtools sort` to save time and disk space. The call used is as follows:   
+
+```{bash alignment call, eval = FALSE}
+bwa mem -M -t {threads} -R {readgroup_info} {input_fastqs} {reference_file} | \
+samtools sort -o {output_bam} && 
+samtools index -@ {threads} {output_bam}
+```
+
+## Moving barcodes and UMIs to bam tags
+After alignment we move the UMI and barcode information, which is stored in the read name, to the bam tags. We do this using a custom python script which can be found **here**. This script is also called through bash as follows:  
+
+```{bash move bam tags call, eval = FALSE}
+moveBamtags.py -i {input_bam} | samtools view -hbo {output_bam} &&
+samtools index {output_bam}
+```
+
+## Deduplication
+To deduplicate the bam files we use `umi_tools` which takes advantage of the fact that we have UMIs incorporated in our sequencing reads. Once again, this script is called through bash and you can find an example of this below:  
+
+```{bash deduplication, eval = FALSE}
+umi_tools dedup -I {input_bam} -S {output_bam} -L {output_log} --extract-umi-method tag --umi-tag 'RX:Z' --mapping-quality 30 && samtools index -@ {threads} {output_bam}
+```
+
+You can find the documentation of umi-tools describing all options [here](https://umi-tools.readthedocs.io/en/latest/).  
+
+## QC summary
+To make a QC summary report we use a tool called `alfred` which can be found [here](https://www.gear-genomics.com/docs/alfred/cli/). We run this before and after deduplication as follows:
+
+```{bash QC call, eval = FALSE}
+alfred qc -r {input_ref} -o {output} {input_bam}
+```
+
+Following this we summarize the output of both files in an tsv file using the following bash call
+
+```{bash combine QC files, eval = FALSE}
+zgrep ^ME {prededup_bamfile} | cut -f 2- | sed -n '1p;0~2p' > {outdir}/all.tsv
+zgrep ^ME {postdedup_bamfile} | cut -f 2- | sed -n '1p;0~2p' > {outdir}/dedup.tsv
+```
+
+The entire preprocessing workflow is automated and available as a snakemake file **here**
+
+# Copy number calling
+## Transform bam files
+To be able to efficiently count reads in (variable width) genomic windows, we first transform bam files into bed files. We do this using the `bamtobed` function from `bedtools`. We make sure we only select reads that have a high mapping quality and are properly mapped (and paired in the case of paired-end sequencing). We only select chromosomes 1-22 and X and make sure the the bed file is properly sorted afterwards. We call this as follows:  
+
+```{bash bamtobed, eval = FALSE}
+samtools view -q 30 -F 1024 -b {input} | bedtools bamtobed | grep -E '^[0-9]|^X|^chr[0-9]|^chrX' |\
+sort -k1,1V -k2,2n -k3,3n | gzip -c > {output}
+```
+
+## Count reads
+We then use a file containing variable width bins, which can be found **here**, and count the reads in each genomic region. We use `bedtools intersect` to do this. We run this per sample and then combine all the samples (normally all 384 cells from one library) into one large file. 
+
+```{bash bedtools intersect, eval = FALSE}
+echo {sample_name} > {output}
+bedtools intersect -nonamecheck -F 0.5 -sorted -c -a {variable_width_bin_file} -b {input.bed} | cut -f4 >> {output}
+```
+
+```{bash combine counts, eval = FALSE}
+paste {input_files} | gzip > {output_file}
+```
+
+## Calling copy numbers
+The above generated files are then used to call copy numbers. We use a custom script to call copy number profiles and there are, depending on the use-case, different ways to run this script. Below is an example call and we will explain the parameters used after that.
+
+```{bash run copynumber calling, eval = FALSE}
+Rscript cnv_calling.R --counts {counts} --bins {bins} --binsize {binsize} --blacklist {blacklist} --normseg {normseg} --gc {gc_file} --segmentation {segmentation_type} --penalty {segmentation_penalty} --type single --randomforest {path_to_randomforest_model} --rfthreshold {rf_threshold} --removethreshold {removethreshold} --minploidy {minploidy} --maxploidy {maxploidy} --minpurity {minpurity} --maxpurity {maxpurity} --sex {sex} --threads {threads} --output {output}
+```
+
+Below you can find a brief explanation of the different parameters:  
+
+* counts: file containing binned counts
+* bins: file containing bins
+* binsize: integer denoting binsize used
+* blacklist: file containing regions that should be filtered out (telomeric/centromeric regions for instance)
+* normseg: additional normalization of regions if required
+* segmentation: either 'joint' or 'single' for `multipcf` or `CBS` segmentation, respectively. 
+* penalty: penalty threshold used for joint segmentation. If using single segmentation this should be replaced by `--prune {prune_penalty}` and `--alpha {alpha_penalty}`
+* type: 'single' or 'bulk' depending on if it's single-cell sequencing or bulk sequencing
+* randomforest: path to the randomforest model
+* rfthreshold: threshold used for randomforest classification
+* minploidy, maxploidy, minpurity and maxpurity: minimum and maximum purity/ploidies for grid search
+* sex: either male or female depending on sex of the sample sequenced
+* threads: number of threads to use for parallel processing
+* output: output directory
+
+## Generate plots
+Finally, we generate some profile plots and genomewide heatmaps based on the accomplished copy number calling. We do this with a custom R script which can be called as follows:  
+
+```{bash plot copynumber calling, eval = FALSE}
+Rscript  plotting.R --rds {input} --runtype {run_type} --threads {threads} --outdir {outdir}
+```
+
+Just like the preprocessing section, the copy number calling is also automatized and wrapped in a snakemake pipeline and is available **here**.
+

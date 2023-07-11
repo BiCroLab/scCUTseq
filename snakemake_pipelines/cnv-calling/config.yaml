@@ -1,0 +1,48 @@
+run_info:
+  run: "sequencing"
+  library: "P3_ACT"
+  base_path: "/mnt/"
+  threads: 32
+  use_rf: True
+  rf_threshold: 0.3 # 0.5 is default for most models. You can check the best threshold using an ROC curve.
+
+
+analysis:
+  binsize: [500000]
+  readlength: 76 
+  # This should be the closest possible to the given bin files. 
+  # i.e. if your sequence reads are of length 130 (due to linkers) you should use 150 here.
+  # Possible inputs cplplurrently: 48, 76, 150
+  
+  removethreshold: 100000 
+  # Number of minimum reads for cells to be analysed (important for joint segmentation) 
+  # to remove noisy cells that can influence the joint segmentation performance
+
+# Path to bin/blacklist/GC-content files
+bin_path: "/mnt/AchTeraD/Documents/Projects/scCUTseq/copynumber-pipeline/cnv-calling/files/hg19/"
+#blacklist: "hg19-blacklist.v2_adjusted.bed" # Should be in bin_path/ directory
+blacklist: "hg19-blacklist.v2_adjusted_ACT.bed" # Should be in bin_path/ directory
+#normseg: "normalize.tsv" # Should be in bin_path/ directory # Use for scCUTseq
+normseg: "" # Use for ACT
+
+cnv_calling:
+  # single cell or bulk
+  single_cell: True
+  segmentation_type: "joint" #single or joint
+
+  # Parameters for DNA copy segmentation
+  alpha: 0.0001 # Used for single sample segmentation
+  sdprune: 0.05 # Used for single sample segmentation
+  penalty: 2 # Used for joint segmentation (default 40)
+  
+  # Integer copy number calling parameters
+  minploidy: 1.7
+  maxploidy: 6 # Default 6 but adjust for sample types (3.5 for prostate)
+  minpurity: 1 # Change for bulk (experimental)
+  maxpurity: 1
+  sex: "male" # male or female
+
+# Script paths
+cnv: "/mnt/AchTeraD/Documents/Projects/scCUTseq/copynumber-pipeline/cnv-calling/scripts/cnv_calling.R"
+plotting: "/mnt/AchTeraD/Documents/Projects/scCUTseq/copynumber-pipeline/cnv-calling/scripts/plotting.R"
+randomforest: "/mnt/AchTeraD/Documents/Projects/scCUTseq/data/cell_classifier/randomforest.rds"

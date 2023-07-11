@@ -1,0 +1,27 @@
+# Sample related
+indir: "/mnt/AchTeraD/data/BICRO246/fastq/"
+samplename: "MS74_S1"
+outdir: "/mnt/AchTeraD/data/BICRO246/MS74/"
+paired: False
+lanesplit: True
+trim: False # Only for paired samples
+lanes: ["L001", "L002", "L003", "L004"] # Might need to change for NextSeq 2000 vs Nextseq500/550 or Novaseq
+
+# Semi-static
+bc: "/mnt/AchTeraD/data/384_NlaIII-barcodes.txt"
+#pattern: UUUUUUUUBBBBBBBBDDDD # 8bc length
+pattern: UUUUUUUUBBBBBBBBBBBDDDD # 11bc length
+mismatches: 2
+
+# Reference
+ref: "/mnt/AchTeraD/Documents/references/hg19/hg19.fa"
+#ref: "/mnt/AchTeraD/Documents/references/kang_ref/Homo_sapiens_assembly38.fasta"
+
+# Tools
+demux: "python /mnt/AchTeraD/Documents/Projects/scCUTseq/copynumber-pipeline/preprocessing/processBarcode.py"
+alfred: "/home/luukharbers/alfred/bin/alfred"
+movetags: "python /mnt/AchTeraD/Documents/Projects/scCUTseq/copynumber-pipeline/preprocessing/moveBamtags.py"
+umi_tools: "/home/luukharbers/miniconda3/bin/umi_tools"
+
+# Threads
+threads: 32

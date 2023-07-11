@@ -1,0 +1,252 @@
+import glob, os
+import pandas as pd
+
+# Specify config file
+configfile: "config.yaml"
+
+# Get variables
+indir = config['indir']
+outdir = config['outdir']
+samplename = config['samplename']
+trim = config['trim']
+paired = config['paired']
+lanesplit = config['lanesplit']
+if lanesplit:
+    lanes = config['lanes']
+barcode_file = config['bc']
+mismatches = config['mismatches']
+ref = config['ref']
+threads = config['threads']
+pattern = config['pattern']
+
+# Path variables
+demux = config['demux']
+alfred = config['alfred']
+umitools = config['umi_tools']
+movetags = config['movetags']
+
+# Get list of barcodes
+barcodes = pd.read_csv(barcode_file, sep = ",", header = None).iloc[:,0]
+
+# Rule specifying output files
+rule all:
+    input:
+        expand(outdir + "bamfiles/{bc}.dedup_q30.bam", bc=barcodes),
+        expand(outdir + "bamfiles/{bc}.dedup_q30.bam.bai", bc=barcodes),
+        outdir + samplename + "_all.tsv",
+        outdir + samplename + "_dedup.tsv"
+
+# Demultiplexing
+if lanesplit:
+    if paired:
+        rule demux:
+            input:
+                fastq1=expand(indir + samplename + "_{lane}_R1.fastq.gz", lane=lanes),
+                fastq2=expand(indir + samplename + "_{lane}_R2.fastq.gz", lane=lanes),
+                barcodes=barcode_file
+            output:
+                fastq1=expand(outdir + "demultiplexed/{bc}_R1.fq.gz", bc=barcodes),
+                fastq2=expand(outdir + "demultiplexed/{bc}_R2.fq.gz", bc=barcodes)
+            params:
+                mismatches=mismatches,
+                outdir=outdir + "demultiplexed",
+                pattern=pattern
+            threads: threads
+            shell:
+                demux + " -i {input.fastq1} -i2 {input.fastq2} -o {params.outdir} "
+                "-b {input.barcodes} -d {params.mismatches} -p {params.pattern} "
+                "-t {threads} -r paired -v"
+    else:
+        rule demux:
+            input:
+                fastq=expand(indir + samplename + "_{lane}_R1.fastq.gz", lane=lanes),
+                barcodes=barcode_file
+            output:
+                fastq=expand(outdir + "demultiplexed/{bc}.fq.gz", bc=barcodes)
+            params:
+                mismatches=mismatches,
+                outdir=outdir + "demultiplexed",
+                pattern=pattern
+            threads: threads
+            shell:
+                demux + " -i {input.fastq} -o {params.outdir} "
+                "-b {input.barcodes} -d {params.mismatches} -p {params.pattern} "
+                "-t {threads} -r single -v"
+else:
+    if paired:
+        rule demux:
+            input:
+                fastq1=indir + samplename + "_R1.fastq.gz",
+                fastq2=indir + samplename + "_R2.fastq.gz",
+                barcodes=barcode_file
+            output:
+                fastq1=expand(outdir + "demultiplexed/{bc}_R1.fq.gz", bc=barcodes),
+                fastq2=expand(outdir + "demultiplexed/{bc}_R2.fq.gz", bc=barcodes)
+            params:
+                mismatches=mismatches,
+                outdir=outdir + "demultiplexed",
+                pattern=pattern
+            threads: threads
+            shell:
+                demux + " -i {input.fastq1} -i2 {input.fastq2} -o {params.outdir} "
+                "-b {input.barcodes} -d {params.mismatches} -p {params.pattern} "
+                "-t {threads} -r paired -v"
+    else:
+        rule demux:
+            input:
+                fastq=indir + samplename + "_R1.fastq.gz",
+                barcodes=barcode_file
+            output:
+                fastq1=expand(outdir + "demultiplexed/{bc}.fq.gz", bc=barcodes)
+            params:
+                mismatches=mismatches,
+                outdir=outdir + "demultiplexed",
+                pattern=pattern
+            threads: threads
+            shell:
+                demux + " -i {input.fastq} -o {params.outdir} "
+                "-b {input.barcodes} -d {params.mismatches} -p {params.pattern} "
+                "-t {threads} -r single -v"
+
+# Trim adapters
+if trim and paired:
+    rule trim:
+        input:
+            fastq1=outdir + "demultiplexed/{bc}_R1.fq.gz",
+            fastq2=outdir + "demultiplexed/{bc}_R2.fq.gz"
+        output:
+            fastq1=outdir + "demultiplexed/{bc}.trimmed_R1.fq.gz",
+            fastq2=outdir + "demultiplexed/{bc}.trimmed_R2.fq.gz"
+        shell:
+            "fastp -i {input.fastq1} -I {input.fastq2} -o {output.fastq1} "
+            "-O {output.fastq2} --detect_adapter_for_pe "
+            "--cut_front --cut_tail --cut_mean_quality 30"
+
+    # Aligning
+    rule bwa:
+        input:
+            ref=ref,
+            fastq1=outdir + "demultiplexed/{bc}.trimmed_R1.fq.gz",
+            fastq2=outdir + "demultiplexed/{bc}.trimmed_R2.fq.gz"
+        output:
+            bam=temp(outdir + "bamfiles/{bc}.bam"),
+            bai=temp(outdir + "bamfiles/{bc}.bam.bai")
+        params:
+            rg=r"@RG\tID:{bc}\tSM:{bc}\tPL:ILLUMINA"
+        threads: threads
+        shell:
+            "bwa mem -M -t {threads} -R '{params.rg}' {input} | "
+            "samtools sort -o {output.bam} && "
+            "samtools index -@ {threads} {output.bam}"
+# Aligning
+else:
+    if paired:
+        rule bwa:
+            input:
+                ref=ref,
+                fastq1=outdir + "demultiplexed/{bc}_R1.fq.gz",
+                fastq2=outdir + "demultiplexed/{bc}_R2.fq.gz"
+            output:
+                bam=temp(outdir + "bamfiles/{bc}.bam"),
+                bai=temp(outdir + "bamfiles/{bc}.bam.bai")
+            params:
+                rg=r"@RG\tID:{bc}\tSM:{bc}\tPL:ILLUMINA"
+            threads: threads
+            shell:
+                "bwa mem -M -t {threads} -R '{params.rg}' {input} | "
+                "samtools sort -o {output.bam} && "
+                "samtools index -@ {threads} {output.bam}"
+    else:
+        rule bwa:
+            input:
+                ref=ref,
+                fastq1=outdir + "demultiplexed/{bc}.fq.gz",
+            output:
+                bam=temp(outdir + "bamfiles/{bc}.bam"),
+                bai=temp(outdir + "bamfiles/{bc}.bam.bai")
+            params:
+                rg=r"@RG\tID:{bc}\tSM:{bc}\tPL:ILLUMINA"
+            threads: threads
+            shell:
+                "bwa mem -M -t {threads} -R '{params.rg}' {input} | "
+                "samtools sort -o {output.bam} && "
+                "samtools index -@ {threads} {output.bam}"
+
+# Move tags to correct place in bamfile
+rule moveTags:
+    input:
+        bam=outdir + "bamfiles/{bc}.bam",
+        bai=outdir + "bamfiles/{bc}.bam.bai"
+    output:
+        bam=temp(outdir + "bamfiles/{bc}_fixed.bam"),
+        bai=temp(outdir + "bamfiles/{bc}_fixed.bam.bai")
+    shell:
+        movetags + " -i {input.bam} | samtools view -hbo {output.bam} && "
+        "samtools index {output.bam}" 
+
+# QC pre-dedup
+rule aflred_pre:
+    input:
+        bam=outdir + "bamfiles/{bc}_fixed.bam",
+        ref=ref
+    output:
+        temp(outdir + "bamfiles/{bc}.all.tsv.gz")
+    shell:
+        alfred + " qc -r {input.ref} -o {output} "
+        "{input.bam}"
+
+# Dedup
+if paired:
+    rule deduplication:
+        input:
+            bam=outdir + "bamfiles/{bc}_fixed.bam"
+        output:
+            bam=protected(outdir + "bamfiles/{bc}.dedup_q30.bam"),
+            bai=outdir + "bamfiles/{bc}.dedup_q30.bam.bai",
+            log=outdir + "logs/{bc}.log"
+        threads: 4
+        shell:
+            umitools + " dedup -I {input.bam} -S {output.bam} -L {output.log} --extract-umi-method tag "
+            "--umi-tag 'RX:Z' --mapping-quality 30 --paired && samtools index -@ {threads} {output.bam}"
+else:
+    rule deduplication:
+        input:
+            bam=outdir + "bamfiles/{bc}_fixed.bam"
+        output:
+            bam=protected(outdir + "bamfiles/{bc}.dedup_q30.bam"),
+            bai=outdir + "bamfiles/{bc}.dedup_q30.bam.bai",
+            log=outdir + "logs/{bc}.log"
+        threads: 4
+        shell:
+            umitools + " dedup -I {input.bam} -S {output.bam} -L {output.log} --extract-umi-method tag "
+            "--umi-tag 'RX:Z' --mapping-quality 30 && samtools index -@ {threads} {output.bam}"
+
+# QC post-dedup
+rule aflred_post:
+    input:
+        bam=outdir + "bamfiles/{bc}.dedup_q30.bam",
+        ref=ref
+    output:
+        temp(outdir + "bamfiles/{bc}.dedup.tsv.gz")
+    shell:
+        alfred + " qc -r {input.ref} -o {output} "
+        "{input.bam}"
+
+# QC summary
+rule qc:
+    input:
+        expand(outdir + "bamfiles/{bc}.all.tsv.gz", bc = barcodes),
+        expand(outdir + "bamfiles/{bc}.dedup.tsv.gz", bc = barcodes)
+    output:
+        protected(outdir + samplename + "_all.tsv"),
+        protected(outdir + samplename + "_dedup.tsv")
+    params:
+        directory=outdir,
+        out=outdir + samplename + "_"
+    shell:
+        """
+        zgrep ^ME {params.directory}bamfiles/*all.tsv.gz | cut -f 2- | \\
+        sed -n '1p;0~2p' > {params.out}all.tsv
+        zgrep ^ME {params.directory}bamfiles/*dedup.tsv.gz | cut -f 2- | \\
+        sed -n '1p;0~2p' > {params.out}dedup.tsv
+        """

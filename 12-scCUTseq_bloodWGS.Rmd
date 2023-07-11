@@ -1,0 +1,34 @@
+---
+author: "Luuk Harbers"
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::gitbook
+editor_options:
+  chunk_output_type: console
+---
+
+# Whole-Genome Sequencing of blood
+
+This sections produces all the figures used in Supplementary Figure 9.
+
+```{r}
+# Source setup file
+source("./functions/setup.R")
+
+# Load functions
+source("./functions/plotProfile.R")
+```
+
+## Plotting WGS data for P3 and P6 blood
+
+```{r plot profiles}
+# Load data
+cnv = readRDS("./data/blood_wgs_cnv.rds")
+
+# Plot profiles
+# P3
+plotProfile(cnv$segments[[1]], cnv$counts_lrr[[1]], bins = cnv$bins, sc = FALSE)
+
+# P6
+plotProfile(cnv$segments[[2]], cnv$counts_lrr[[2]], bins = cnv$bins, sc = FALSE)
+```
+
