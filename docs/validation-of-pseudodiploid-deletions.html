@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 NEBNext versus scCUTseq | High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue</title>
-  <meta name="description" content="10 NEBNext versus scCUTseq | High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue" />
+  <title>17 Validation of pseudodiploid deletions | High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue</title>
+  <meta name="description" content="17 Validation of pseudodiploid deletions | High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 NEBNext versus scCUTseq | High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue" />
+  <meta property="og:title" content="17 Validation of pseudodiploid deletions | High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 NEBNext versus scCUTseq | High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue" />
+  <meta name="twitter:title" content="17 Validation of pseudodiploid deletions | High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="copy-number-profiles-of-other-prostate-cancer-patients.html"/>
-<link rel="next" href="whole-genome-sequencing-of-blood.html"/>
+<link rel="prev" href="monster-cells.html"/>
+<link rel="next" href="trrfer-subclone-analysis.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -261,60 +261,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="nebnext-versus-sccutseq" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">10</span> NEBNext versus scCUTseq<a href="nebnext-versus-sccutseq.html#nebnext-versus-sccutseq" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This sections produces all the figures used in Supplementary Figure 8.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="nebnext-versus-sccutseq.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source setup file</span></span>
-<span id="cb86-2"><a href="nebnext-versus-sccutseq.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./functions/setup.R&quot;</span>)</span>
-<span id="cb86-3"><a href="nebnext-versus-sccutseq.html#cb86-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-4"><a href="nebnext-versus-sccutseq.html#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load functions</span></span>
-<span id="cb86-5"><a href="nebnext-versus-sccutseq.html#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./functions/plotHeatmap.R&quot;</span>)</span>
-<span id="cb86-6"><a href="nebnext-versus-sccutseq.html#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./functions/plotProfile.R&quot;</span>)</span></code></pre></div>
-<div id="validating-detected-deletions-using-bulk-nebnext-sequencing" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> Validating detected deletions using bulk NEBNext sequencing<a href="nebnext-versus-sccutseq.html#validating-detected-deletions-using-bulk-nebnext-sequencing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We have also performed bulk NEBNext sequencing of two sections in P6 where we saw a high number of pseudodiploid cells.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="nebnext-versus-sccutseq.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in data</span></span>
-<span id="cb87-2"><a href="nebnext-versus-sccutseq.html#cb87-2" aria-hidden="true" tabindex="-1"></a>sccutseq <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;./data/P6_cnv.rds&quot;</span>)</span>
-<span id="cb87-3"><a href="nebnext-versus-sccutseq.html#cb87-3" aria-hidden="true" tabindex="-1"></a>annotation <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;./annotation/P6.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb87-4"><a href="nebnext-versus-sccutseq.html#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-5"><a href="nebnext-versus-sccutseq.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The NEBNext sequencing we show is performed on section L2C2 and L3C3</span></span>
-<span id="cb87-6"><a href="nebnext-versus-sccutseq.html#cb87-6" aria-hidden="true" tabindex="-1"></a>libraries_sccut <span class="ot">=</span> annotation[V2 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;L2C2&quot;</span>, <span class="st">&quot;L3C3&quot;</span>), V1]</span>
-<span id="cb87-7"><a href="nebnext-versus-sccutseq.html#cb87-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-8"><a href="nebnext-versus-sccutseq.html#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="co"># First plot genomewide heatmaps. </span></span>
-<span id="cb87-9"><a href="nebnext-versus-sccutseq.html#cb87-9" aria-hidden="true" tabindex="-1"></a>sccutseq_profiles <span class="ot">=</span> sccutseq<span class="sc">$</span>copynumber[, sccutseq<span class="sc">$</span>stats[classifier_prediction <span class="sc">==</span> <span class="st">&quot;good&quot;</span>, sample], with <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb87-10"><a href="nebnext-versus-sccutseq.html#cb87-10" aria-hidden="true" tabindex="-1"></a>sccutseq_profiles_l2c2 <span class="ot">=</span> sccutseq_profiles[, <span class="fu">grepl</span>(libraries_sccut[<span class="dv">1</span>], <span class="fu">colnames</span>(sccutseq_profiles)), with <span class="ot">=</span> F]</span>
-<span id="cb87-11"><a href="nebnext-versus-sccutseq.html#cb87-11" aria-hidden="true" tabindex="-1"></a>sccutseq_profiles_l3c3 <span class="ot">=</span> sccutseq_profiles[, <span class="fu">grepl</span>(libraries_sccut[<span class="dv">2</span>], <span class="fu">colnames</span>(sccutseq_profiles)), with <span class="ot">=</span> F]</span>
-<span id="cb87-12"><a href="nebnext-versus-sccutseq.html#cb87-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-13"><a href="nebnext-versus-sccutseq.html#cb87-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot heatmaps</span></span>
-<span id="cb87-14"><a href="nebnext-versus-sccutseq.html#cb87-14" aria-hidden="true" tabindex="-1"></a><span class="co"># L2C3</span></span>
-<span id="cb87-15"><a href="nebnext-versus-sccutseq.html#cb87-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(sccutseq_profiles_l2c2, sccutseq<span class="sc">$</span>bins, <span class="at">linesize =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/plot%20scCUTseq%20genomewide%20heatmaps-1.png" width="672" /></p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="nebnext-versus-sccutseq.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co">#L3C3</span></span>
-<span id="cb88-2"><a href="nebnext-versus-sccutseq.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(sccutseq_profiles_l3c3, sccutseq<span class="sc">$</span>bins, <span class="at">linesize =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/plot%20scCUTseq%20genomewide%20heatmaps-2.png" width="672" /></p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="nebnext-versus-sccutseq.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load NEB data</span></span>
-<span id="cb89-2"><a href="nebnext-versus-sccutseq.html#cb89-2" aria-hidden="true" tabindex="-1"></a>NEB <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;./data/BC282_cnv.rds&quot;</span>)</span>
-<span id="cb89-3"><a href="nebnext-versus-sccutseq.html#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-4"><a href="nebnext-versus-sccutseq.html#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select samples</span></span>
-<span id="cb89-5"><a href="nebnext-versus-sccutseq.html#cb89-5" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;NZ279&quot;</span>, <span class="st">&quot;NZ280&quot;</span>) <span class="co">#NZ279 is L2C2 and NZ280 is L3C3</span></span>
-<span id="cb89-6"><a href="nebnext-versus-sccutseq.html#cb89-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-7"><a href="nebnext-versus-sccutseq.html#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot profiles</span></span>
-<span id="cb89-8"><a href="nebnext-versus-sccutseq.html#cb89-8" aria-hidden="true" tabindex="-1"></a><span class="co"># L2C2</span></span>
-<span id="cb89-9"><a href="nebnext-versus-sccutseq.html#cb89-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plotProfile</span>(NEB<span class="sc">$</span>segments[[samples[<span class="dv">1</span>]]], NEB<span class="sc">$</span>counts_lrr[[samples[[<span class="dv">1</span>]]]], <span class="at">bins =</span> NEB<span class="sc">$</span>bins, <span class="at">sc =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/plot%20NEBNext%20profiles-1.png" width="672" /></p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="nebnext-versus-sccutseq.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># L3C3</span></span>
-<span id="cb90-2"><a href="nebnext-versus-sccutseq.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotProfile</span>(NEB<span class="sc">$</span>segments[[samples[<span class="dv">1</span>]]], NEB<span class="sc">$</span>counts_lrr[[samples[[<span class="dv">1</span>]]]], <span class="at">bins =</span> NEB<span class="sc">$</span>bins, <span class="at">sc =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/plot%20NEBNext%20profiles-2.png" width="672" /></p>
+<div id="validation-of-pseudodiploid-deletions" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">17</span> Validation of pseudodiploid deletions<a href="validation-of-pseudodiploid-deletions.html#validation-of-pseudodiploid-deletions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This sections produces all the figures used in Figure 3.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="validation-of-pseudodiploid-deletions.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source setup file</span></span>
+<span id="cb123-2"><a href="validation-of-pseudodiploid-deletions.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./functions/setup.R&quot;</span>)</span>
+<span id="cb123-3"><a href="validation-of-pseudodiploid-deletions.html#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-4"><a href="validation-of-pseudodiploid-deletions.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load functions</span></span>
+<span id="cb123-5"><a href="validation-of-pseudodiploid-deletions.html#cb123-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./functions/plotHeatmap.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="validation-of-pseudodiploid-deletions.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in data</span></span>
+<span id="cb124-2"><a href="validation-of-pseudodiploid-deletions.html#cb124-2" aria-hidden="true" tabindex="-1"></a>ACT <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;./data/CD1p.rds&quot;</span>)</span>
+<span id="cb124-3"><a href="validation-of-pseudodiploid-deletions.html#cb124-3" aria-hidden="true" tabindex="-1"></a>scCUTseq <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;./data/CD27.rds&quot;</span>)</span>
+<span id="cb124-4"><a href="validation-of-pseudodiploid-deletions.html#cb124-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-5"><a href="validation-of-pseudodiploid-deletions.html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot heatmaps</span></span>
+<span id="cb124-6"><a href="validation-of-pseudodiploid-deletions.html#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="co"># scCUTseq</span></span>
+<span id="cb124-7"><a href="validation-of-pseudodiploid-deletions.html#cb124-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(scCUTseq<span class="sc">$</span>copynumber[, scCUTseq<span class="sc">$</span>stats[classifier_prediction <span class="sc">==</span> <span class="st">&quot;good&quot;</span>, sample], <span class="at">with =</span> F], scCUTseq<span class="sc">$</span>bins, <span class="at">linesize =</span> <span class="fl">1.6</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot%20P7%20heatmaps-1.png" width="2112" /></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="validation-of-pseudodiploid-deletions.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ACT</span></span>
+<span id="cb125-2"><a href="validation-of-pseudodiploid-deletions.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(ACT<span class="sc">$</span>copynumber[, ACT<span class="sc">$</span>stats[classifier_prediction <span class="sc">==</span> <span class="st">&quot;good&quot;</span>, sample], <span class="at">with =</span> F], ACT<span class="sc">$</span>bins, <span class="at">linesize =</span> <span class="fl">1.6</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot%20P7%20heatmaps-2.png" width="2112" /></p>
+<p>The analysis and figures based on the microscopy is unfortunately not included in this markdown.</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="copy-number-profiles-of-other-prostate-cancer-patients.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="whole-genome-sequencing-of-blood.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="monster-cells.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="trrfer-subclone-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

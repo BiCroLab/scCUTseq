@@ -1,11 +1,3 @@
----
-author: "Luuk Harbers"
-date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
-output: bookdown::gitbook
-editor_options:
-  chunk_output_type: console
----
-
 # Monster cells
 
 This sections produces all the figures used in Supplementary Figure 16 and 17.

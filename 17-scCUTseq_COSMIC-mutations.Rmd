@@ -1,12 +1,4 @@
----
-author: "Luuk Harbers"
-date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
-output: bookdown::gitbook
-editor_options:
-  chunk_output_type: console
----
-
-# Deletions and targeted panel
+# COSMIC deletions and targeted panel mutations
 
 This sections produces all the figures used in Supplementary Figure 19.
 

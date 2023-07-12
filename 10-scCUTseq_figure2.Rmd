@@ -1,11 +1,3 @@
----
-author: "Luuk Harbers"
-date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
-output: bookdown::gitbook
-editor_options:
-  chunk_output_type: console
----
-
 # Clonal analysis pseudo-diploid cells
 
 This section produces all the figures used for Figure 2. 
