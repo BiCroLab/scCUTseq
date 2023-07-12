@@ -74,7 +74,7 @@ zgrep ^ME {prededup_bamfile} | cut -f 2- | sed -n '1p;0~2p' > {outdir}/all.tsv
 zgrep ^ME {postdedup_bamfile} | cut -f 2- | sed -n '1p;0~2p' > {outdir}/dedup.tsv
 ```
 
-The entire preprocessing workflow is automated and available as a snakemake file **here**
+The entire preprocessing workflow is automated and available as a snakemake file and is available in the github repository [here](https://github.com/BiCroLab/scCUTseq/tree/main/snakemake_pipelines/preprocessing_scCUTseq).
 
 # Copy number calling
 ## Transform bam files
@@ -86,7 +86,7 @@ sort -k1,1V -k2,2n -k3,3n | gzip -c > {output}
 ```
 
 ## Count reads
-We then use a file containing variable width bins, which can be found **here**, and count the reads in each genomic region. We use `bedtools intersect` to do this. We run this per sample and then combine all the samples (normally all 384 cells from one library) into one large file. 
+We then use a file containing variable width bins, which can be found in the github repository [here](https://github.com/BiCroLab/scCUTseq/tree/main/snakemake_pipelines/cnv-calling/files/hg19), and count the reads in each genomic region. We use `bedtools intersect` to do this. We run this per sample and then combine all the samples (normally all 384 cells from one library) into one large file. 
 
 ```{bash bedtools intersect, eval = FALSE}
 echo {sample_name} > {output}
@@ -128,5 +128,5 @@ Finally, we generate some profile plots and genomewide heatmaps based on the acc
 Rscript  plotting.R --rds {input} --runtype {run_type} --threads {threads} --outdir {outdir}
 ```
 
-Just like the preprocessing section, the copy number calling is also automatized and wrapped in a snakemake pipeline and is available **here**.
+Just like the preprocessing section, the copy number calling is also automatized and wrapped in a snakemake pipeline and is available in the github repository [here](https://github.com/BiCroLab/scCUTseq/tree/main/snakemake_pipelines/cnv-calling).
 
