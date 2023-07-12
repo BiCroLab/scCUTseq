@@ -1,6 +1,5 @@
 ---
-author: "Luuk Harbers"
-date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+title: "scCUTseq paper"
 output: bookdown::gitbook
 output_dir: "docs"
 ---
