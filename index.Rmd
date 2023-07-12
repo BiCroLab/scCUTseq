@@ -1,0 +1,18 @@
+---
+title: "High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue"
+Author: Luuk Harbers
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::gitbook
+output_dir: "docs"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, message = FALSE, warning = FALSE)
+options(width = 60)
+```
+
+# Introduction
+
+On this page you can find all code associated with the manuscript 'High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue'. All the individual `R Markdown` files can be found in the [github repository](https://github.com/bicrolab/scCUTseq).  
+
+If you wish to run any of the code yourself, simply clone the repository and (interactively) run the R Markdown files. Due to the size of the processed data, the data can be downloaded from [figshare](10.17044/scilifelab.23662140). Simply download the data and extract it in your cloned repository.
