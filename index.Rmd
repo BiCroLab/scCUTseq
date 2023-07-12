@@ -1,7 +1,7 @@
 ---
 title: "High clonal diversity and spatial genetic admixture in early prostate cancer and surrounding normal tissue"
 Author: Luuk Harbers
-date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+date: "Last compiled on `r format(Sys.time(), '%Y-%m-%d')`"
 output: bookdown::gitbook
 output_dir: "docs"
 ---
