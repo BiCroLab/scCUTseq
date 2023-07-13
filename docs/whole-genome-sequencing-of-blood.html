@@ -264,22 +264,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="whole-genome-sequencing-of-blood" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number">11</span> Whole-Genome Sequencing of blood<a href="whole-genome-sequencing-of-blood.html#whole-genome-sequencing-of-blood" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This sections produces all the figures used in Supplementary Figure 9.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="whole-genome-sequencing-of-blood.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source setup file</span></span>
-<span id="cb91-2"><a href="whole-genome-sequencing-of-blood.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./functions/setup.R&quot;</span>)</span>
-<span id="cb91-3"><a href="whole-genome-sequencing-of-blood.html#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-4"><a href="whole-genome-sequencing-of-blood.html#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load functions</span></span>
-<span id="cb91-5"><a href="whole-genome-sequencing-of-blood.html#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./functions/plotProfile.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="whole-genome-sequencing-of-blood.html#cb91-1" tabindex="-1"></a><span class="co"># Source setup file</span></span>
+<span id="cb91-2"><a href="whole-genome-sequencing-of-blood.html#cb91-2" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./functions/setup.R&quot;</span>)</span>
+<span id="cb91-3"><a href="whole-genome-sequencing-of-blood.html#cb91-3" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="whole-genome-sequencing-of-blood.html#cb91-4" tabindex="-1"></a><span class="co"># Load functions</span></span>
+<span id="cb91-5"><a href="whole-genome-sequencing-of-blood.html#cb91-5" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;./functions/plotProfile.R&quot;</span>)</span></code></pre></div>
 <div id="plotting-wgs-data-for-p3-and-p6-blood" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Plotting WGS data for P3 and P6 blood<a href="whole-genome-sequencing-of-blood.html#plotting-wgs-data-for-p3-and-p6-blood" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="whole-genome-sequencing-of-blood.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
-<span id="cb92-2"><a href="whole-genome-sequencing-of-blood.html#cb92-2" aria-hidden="true" tabindex="-1"></a>cnv <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;./data/blood_wgs_cnv.rds&quot;</span>)</span>
-<span id="cb92-3"><a href="whole-genome-sequencing-of-blood.html#cb92-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-4"><a href="whole-genome-sequencing-of-blood.html#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot profiles</span></span>
-<span id="cb92-5"><a href="whole-genome-sequencing-of-blood.html#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="co"># P3</span></span>
-<span id="cb92-6"><a href="whole-genome-sequencing-of-blood.html#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plotProfile</span>(cnv<span class="sc">$</span>segments[[<span class="dv">1</span>]], cnv<span class="sc">$</span>counts_lrr[[<span class="dv">1</span>]], <span class="at">bins =</span> cnv<span class="sc">$</span>bins, <span class="at">sc =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="whole-genome-sequencing-of-blood.html#cb92-1" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb92-2"><a href="whole-genome-sequencing-of-blood.html#cb92-2" tabindex="-1"></a>cnv <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;./data/blood_wgs_cnv.rds&quot;</span>)</span>
+<span id="cb92-3"><a href="whole-genome-sequencing-of-blood.html#cb92-3" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="whole-genome-sequencing-of-blood.html#cb92-4" tabindex="-1"></a><span class="co"># Plot profiles</span></span>
+<span id="cb92-5"><a href="whole-genome-sequencing-of-blood.html#cb92-5" tabindex="-1"></a><span class="co"># P3</span></span>
+<span id="cb92-6"><a href="whole-genome-sequencing-of-blood.html#cb92-6" tabindex="-1"></a><span class="fu">plotProfile</span>(cnv<span class="sc">$</span>segments[[<span class="dv">1</span>]], cnv<span class="sc">$</span>counts_lrr[[<span class="dv">1</span>]], <span class="at">bins =</span> cnv<span class="sc">$</span>bins, <span class="at">sc =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/plot%20profiles-1.png" width="672" /></p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="whole-genome-sequencing-of-blood.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P6</span></span>
-<span id="cb93-2"><a href="whole-genome-sequencing-of-blood.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotProfile</span>(cnv<span class="sc">$</span>segments[[<span class="dv">2</span>]], cnv<span class="sc">$</span>counts_lrr[[<span class="dv">2</span>]], <span class="at">bins =</span> cnv<span class="sc">$</span>bins, <span class="at">sc =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="whole-genome-sequencing-of-blood.html#cb93-1" tabindex="-1"></a><span class="co"># P6</span></span>
+<span id="cb93-2"><a href="whole-genome-sequencing-of-blood.html#cb93-2" tabindex="-1"></a><span class="fu">plotProfile</span>(cnv<span class="sc">$</span>segments[[<span class="dv">2</span>]], cnv<span class="sc">$</span>counts_lrr[[<span class="dv">2</span>]], <span class="at">bins =</span> cnv<span class="sc">$</span>bins, <span class="at">sc =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/plot%20profiles-2.png" width="672" /></p>
 
 </div>

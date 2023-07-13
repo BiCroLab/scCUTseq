@@ -65,10 +65,6 @@ Next we wanted to see the distribution of the Variant Allele Frequencies in both
 ```{r VAF distribution P3}
 # Load in SNV data
 snv = fread("./data/mutations/P3_filtered_SNVs.tsv")
-annot = fread("./annotation/P3.tsv",
-              header = F, 
-              col.names =  c("library", "section", "pathology"))
-
 
 # Remove underscore in sample
 snv[, SAMPLE := gsub("_", "", SAMPLE)]
@@ -94,10 +90,6 @@ Following this, we do the same for P6.
 ```{r VAF distribution P6}
 # Load in SNV data
 snv = fread("./data/mutations/P6_filtered_SNVs.tsv")
-annot = fread("./annotation/P6.tsv",
-              header = F, 
-              col.names =  c("library", "section", "pathology"))
-
 
 # Remove underscore in sample
 snv[, SAMPLE := gsub("_", "", SAMPLE)]
