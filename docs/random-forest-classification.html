@@ -295,11 +295,11 @@ It is important to check that the distribution of good/bad profiles is relativel
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="random-forest-classification.html#cb65-1" tabindex="-1"></a><span class="fu">table</span>(training_set<span class="sc">$</span>user_quality)[<span class="dv">1</span>] <span class="sc">/</span> </span>
 <span id="cb65-2"><a href="random-forest-classification.html#cb65-2" tabindex="-1"></a>  (<span class="fu">table</span>(training_set<span class="sc">$</span>user_quality)[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">table</span>(training_set<span class="sc">$</span>user_quality)[<span class="dv">2</span>])  <span class="co"># ratio of good vs bad</span></span></code></pre></div>
 <pre><code>##      good 
-## 0.3771026</code></pre>
+## 0.3776451</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="random-forest-classification.html#cb67-1" tabindex="-1"></a><span class="fu">table</span>(validation_set<span class="sc">$</span>user_quality)[<span class="dv">1</span>] <span class="sc">/</span> </span>
 <span id="cb67-2"><a href="random-forest-classification.html#cb67-2" tabindex="-1"></a>  (<span class="fu">table</span>(validation_set<span class="sc">$</span>user_quality)[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">table</span>(validation_set<span class="sc">$</span>user_quality)[<span class="dv">2</span>])  <span class="co"># ratio of good vs bad</span></span></code></pre></div>
 <pre><code>##      good 
-## 0.3882863</code></pre>
+## 0.3861171</code></pre>
 </div>
 <div id="training-the-model" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Training the model<a href="random-forest-classification.html#training-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -343,29 +343,29 @@ It is important to check that the distribution of good/bad profiles is relativel
 ## 
 ##           Reference
 ## Prediction good bad
-##       good  167   8
-##       bad    12 274
+##       good  164  10
+##       bad    14 273
 ##                                           
-##                Accuracy : 0.9566          
-##                  95% CI : (0.9338, 0.9733)
-##     No Information Rate : 0.6117          
+##                Accuracy : 0.9479          
+##                  95% CI : (0.9235, 0.9664)
+##     No Information Rate : 0.6139          
 ##     P-Value [Acc &gt; NIR] : &lt;2e-16          
 ##                                           
-##                   Kappa : 0.9083          
+##                   Kappa : 0.8897          
 ##                                           
-##  Mcnemar&#39;s Test P-Value : 0.5023          
+##  Mcnemar&#39;s Test P-Value : 0.5403          
 ##                                           
-##             Sensitivity : 0.9330          
-##             Specificity : 0.9716          
-##          Pos Pred Value : 0.9543          
-##          Neg Pred Value : 0.9580          
-##               Precision : 0.9543          
-##                  Recall : 0.9330          
-##                      F1 : 0.9435          
-##              Prevalence : 0.3883          
-##          Detection Rate : 0.3623          
-##    Detection Prevalence : 0.3796          
-##       Balanced Accuracy : 0.9523          
+##             Sensitivity : 0.9213          
+##             Specificity : 0.9647          
+##          Pos Pred Value : 0.9425          
+##          Neg Pred Value : 0.9512          
+##               Precision : 0.9425          
+##                  Recall : 0.9213          
+##                      F1 : 0.9318          
+##              Prevalence : 0.3861          
+##          Detection Rate : 0.3557          
+##    Detection Prevalence : 0.3774          
+##       Balanced Accuracy : 0.9430          
 ##                                           
 ##        &#39;Positive&#39; Class : good            
 ## </code></pre>
