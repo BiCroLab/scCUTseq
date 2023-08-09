@@ -8,4 +8,4 @@ If you wish to run any of the code yourself, simply clone the repository and (in
 
 If there are any issues, please send an email to luuk.harbers@scilifelab.se
 
-Detailed software versions used can be found in the last chapter here: https://bicrolab.github.io/scCUTseq
+The processing and analysis scripts have been run on Ubuntu 20.4, all steps should also be possible to run on mac (and even windows using WSL) but this has not been tested. but this has not been tested. Detailed software versions used can be found in the last chapter here: https://bicrolab.github.io/scCUTseq
