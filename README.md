@@ -8,3 +8,4 @@ If you wish to run any of the code yourself, simply clone the repository and (in
 
 If there are any issues, please send an email to luuk.harbers@scilifelab.se
 
+Detailed software versions used can be found in the last chapter here: https://bicrolab.github.io/scCUTseq
