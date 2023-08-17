@@ -214,7 +214,7 @@ circos.yaxis(side = "left", at = c(-10, -5, 0), labels = c(10, 5, 0), sector.ind
 
 Next, we checked the mutation-status (deletions/amplfications/SNVs) of the genes that we found commonly deleted in our samples in TCGA PRAD. For this we load in the CNA data (`.seg` file) and we download the mutation data. Note, the downloading and loading of the mutation data can take a couple of minutes.
 
-```{r TCGA oncoprint, cache=TRUE}
+```{r TCGA oncoprint, cache=TRUE, results=FALSE, message=FALSE, warning=FALSE}
 # Load TCGA data
 segments = fread("./data//TCGA/TCGA_firehose-segments.seg")
 clinical = fread("./data/TCGA/TCGA_firehose_clinical_data_patient.txt")
