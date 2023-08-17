@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="session-info" class="section level1 hasAnchor" number="20">
 <h1><span class="header-section-number">20</span> Session info<a href="session-info.html#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="session-info.html#cb146-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="session-info.html#cb144-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.3.1 (2023-06-16)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.04.6 LTS
@@ -288,29 +288,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [6] utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] containerit_0.6.0.9004 lubridate_1.9.2       
-##  [3] forcats_1.0.0          purrr_1.0.1           
-##  [5] tibble_3.2.1           tidyverse_2.0.0       
-##  [7] caret_6.0-94           lattice_0.21-8        
-##  [9] pROC_1.18.4            randomForest_4.7-1.1  
-## [11] TCGAbiolinks_2.28.3    maftools_2.16.0       
+##  [1] ggthemes_4.2.4         gridExtra_2.3         
+##  [3] containerit_0.6.0.9004 lubridate_1.9.2       
+##  [5] forcats_1.0.0          purrr_1.0.1           
+##  [7] tibble_3.2.1           tidyverse_2.0.0       
+##  [9] caret_6.0-94           lattice_0.21-8        
+## [11] pROC_1.18.4            randomForest_4.7-1.1  
 ## [13] DescTools_0.99.49      uwot_0.1.16           
 ## [15] Matrix_1.6-0           ineq_0.2-13           
 ## [17] readr_2.1.4            stringr_1.5.0         
 ## [19] treeio_1.24.1          GenomicRanges_1.52.0  
 ## [21] GenomeInfoDb_1.36.1    IRanges_2.34.1        
 ## [23] S4Vectors_0.38.1       BiocGenerics_0.46.0   
-## [25] tidyr_1.3.0            dplyr_1.1.2           
-## [27] ggrastr_1.0.2          Polychrome_1.5.1      
-## [29] circlize_0.4.15        ComplexHeatmap_2.16.0 
-## [31] ggrepel_0.9.3          ggbeeswarm_0.7.2      
-## [33] ggtree_3.8.0           patchwork_1.1.2       
-## [35] ggdendro_0.1.23        RColorBrewer_1.1-3    
-## [37] viridis_0.6.3          viridisLite_0.4.2     
-## [39] ggsci_3.0.0            ggthemes_4.2.4        
-## [41] ggpubr_0.6.0           cowplot_1.1.1         
-## [43] gridExtra_2.3          ggplot2_3.4.2         
-## [45] data.table_1.14.8     
+## [25] dplyr_1.1.2            ggrastr_1.0.2         
+## [27] Polychrome_1.5.1       circlize_0.4.15       
+## [29] ggrepel_0.9.3          ggbeeswarm_0.7.2      
+## [31] ggtree_3.8.0           patchwork_1.1.2       
+## [33] ggdendro_0.1.23        ggpubr_0.6.0          
+## [35] viridis_0.6.3          viridisLite_0.4.2     
+## [37] pbapply_1.7-2          TCGAbiolinks_2.28.3   
+## [39] maftools_2.16.0        tidyr_1.3.0           
+## [41] ComplexHeatmap_2.16.0  RColorBrewer_1.1-3    
+## [43] ggsci_3.0.0            cowplot_1.1.1         
+## [45] ggplot2_3.4.2          data.table_1.14.8     
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] fs_1.6.2                   
@@ -337,257 +337,261 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [22] proxy_0.4-27               
 ##  [23] yulab.utils_0.0.6          
 ##  [24] dbscan_1.1-11              
-##  [25] parallelly_1.36.0          
-##  [26] readxl_1.4.3               
-##  [27] rstudioapi_0.15.0          
-##  [28] RSQLite_2.3.1              
-##  [29] FNN_1.1.3.2                
-##  [30] generics_0.1.3             
-##  [31] gridGraphics_0.5-1         
-##  [32] shape_1.4.6                
-##  [33] gtools_3.9.4               
-##  [34] vroom_1.6.3                
-##  [35] car_3.1-2                  
-##  [36] futile.logger_1.4.3        
-##  [37] fansi_1.0.4                
-##  [38] abind_1.4-5                
-##  [39] lifecycle_1.0.3            
-##  [40] scatterplot3d_0.3-44       
-##  [41] yaml_2.3.7                 
-##  [42] carData_3.0-5              
-##  [43] SummarizedExperiment_1.30.2
-##  [44] recipes_1.0.6              
-##  [45] BiocFileCache_2.8.0        
-##  [46] blob_1.2.4                 
-##  [47] promises_1.2.0.1           
-##  [48] crayon_1.5.2               
-##  [49] miniUI_0.1.1.1             
-##  [50] KEGGREST_1.40.0            
-##  [51] pillar_1.9.0               
-##  [52] knitr_1.43                 
-##  [53] rjson_0.2.21               
-##  [54] boot_1.3-28.1              
-##  [55] gld_2.6.6                  
-##  [56] TCGAbiolinksGUI.data_1.20.0
-##  [57] future.apply_1.11.0        
-##  [58] codetools_0.2-19           
-##  [59] glue_1.6.2                 
-##  [60] downloader_0.4             
-##  [61] ggfun_0.1.1                
-##  [62] vctrs_0.6.3                
-##  [63] png_0.1-8                  
-##  [64] cellranger_1.1.0           
-##  [65] gtable_0.3.3               
-##  [66] cachem_1.0.8               
-##  [67] gower_1.0.1                
-##  [68] xfun_0.39                  
-##  [69] mime_0.12                  
-##  [70] S4Arrays_1.0.4             
-##  [71] prodlim_2023.03.31         
-##  [72] survival_3.5-5             
-##  [73] timeDate_4022.108          
-##  [74] iterators_1.0.14           
-##  [75] hardhat_1.3.0              
-##  [76] lava_1.7.2.1               
-##  [77] ellipsis_0.3.2             
-##  [78] ipred_0.9-14               
-##  [79] nlme_3.1-162               
-##  [80] bit64_4.0.5                
-##  [81] RcppAnnoy_0.0.21           
-##  [82] progress_1.2.2             
-##  [83] filelock_1.0.2             
-##  [84] rprojroot_2.0.3            
-##  [85] bslib_0.5.0                
-##  [86] irlba_2.3.5.1              
-##  [87] vipor_0.4.5                
-##  [88] rpart_4.1.19               
-##  [89] colorspace_2.1-0           
-##  [90] DBI_1.1.3                  
-##  [91] nnet_7.3-19                
-##  [92] DNAcopy_1.74.1             
-##  [93] Exact_3.2                  
-##  [94] tidyselect_1.2.0           
-##  [95] bit_4.0.5                  
-##  [96] compiler_4.3.1             
-##  [97] curl_5.0.1                 
-##  [98] rvest_1.0.3                
-##  [99] expm_0.999-7               
-## [100] xml2_1.3.5                 
-## [101] desc_1.4.2                 
-## [102] DelayedArray_0.26.6        
-## [103] bookdown_0.34              
-## [104] scales_1.2.1               
-## [105] rappdirs_0.3.3             
-## [106] digest_0.6.33              
-## [107] rmarkdown_2.23             
-## [108] XVector_0.40.0             
-## [109] htmltools_0.5.5            
-## [110] pkgconfig_2.0.3            
-## [111] MatrixGenerics_1.12.2      
-## [112] highr_0.10                 
-## [113] dbplyr_2.3.3               
-## [114] fastmap_1.1.1              
-## [115] rlang_1.1.1                
-## [116] GlobalOptions_0.1.2        
-## [117] shiny_1.7.4.1              
-## [118] farver_2.1.1               
-## [119] jquerylib_0.1.4            
-## [120] jsonlite_1.8.7             
-## [121] ModelMetrics_1.2.2.2       
-## [122] RCurl_1.98-1.12            
-## [123] magrittr_2.0.3             
-## [124] GenomeInfoDbData_1.2.10    
-## [125] ggplotify_0.1.1            
-## [126] munsell_0.5.0              
-## [127] Rcpp_1.0.11                
-## [128] ape_5.7-1                  
-## [129] stringi_1.7.12             
-## [130] rootSolve_1.8.2.3          
-## [131] zlibbioc_1.46.0            
-## [132] MASS_7.3-60                
-## [133] plyr_1.8.8                 
-## [134] shinyFiles_0.9.3           
-## [135] parallel_4.3.1             
-## [136] listenv_0.9.0              
-## [137] lmom_2.9                   
-## [138] semver_0.2.0               
-## [139] Biostrings_2.68.1          
-## [140] splines_4.3.1              
-## [141] hms_1.1.3                  
-## [142] ggsignif_0.6.4             
-## [143] reshape2_1.4.4             
-## [144] biomaRt_2.56.1             
-## [145] futile.options_1.0.1       
-## [146] XML_3.99-0.14              
-## [147] evaluate_0.21              
-## [148] stevedore_0.9.6            
-## [149] BiocManager_1.30.21        
-## [150] lambda.r_1.2.4             
-## [151] httpuv_1.6.11              
-## [152] tzdb_0.4.0                 
-## [153] foreach_1.5.2              
-## [154] future_1.33.0              
-## [155] clue_0.3-64                
-## [156] xtable_1.8-4               
-## [157] broom_1.0.5                
-## [158] e1071_1.7-13               
-## [159] tidytree_0.4.2             
-## [160] later_1.3.1                
-## [161] rstatix_0.7.2              
-## [162] class_7.3-22               
-## [163] aplot_0.1.10               
-## [164] memoise_2.0.1              
-## [165] beeswarm_0.4.0             
-## [166] AnnotationDbi_1.62.2       
-## [167] cluster_2.1.4              
-## [168] timechange_0.2.0           
-## [169] globals_0.16.2</code></pre>
+##  [25] R.utils_2.12.2             
+##  [26] parallelly_1.36.0          
+##  [27] readxl_1.4.3               
+##  [28] rstudioapi_0.15.0          
+##  [29] RSQLite_2.3.1              
+##  [30] FNN_1.1.3.2                
+##  [31] generics_0.1.3             
+##  [32] gridGraphics_0.5-1         
+##  [33] shape_1.4.6                
+##  [34] gtools_3.9.4               
+##  [35] vroom_1.6.3                
+##  [36] car_3.1-2                  
+##  [37] futile.logger_1.4.3        
+##  [38] fansi_1.0.4                
+##  [39] abind_1.4-5                
+##  [40] R.methodsS3_1.8.2          
+##  [41] lifecycle_1.0.3            
+##  [42] scatterplot3d_0.3-44       
+##  [43] yaml_2.3.7                 
+##  [44] carData_3.0-5              
+##  [45] SummarizedExperiment_1.30.2
+##  [46] recipes_1.0.6              
+##  [47] BiocFileCache_2.8.0        
+##  [48] blob_1.2.4                 
+##  [49] promises_1.2.0.1           
+##  [50] crayon_1.5.2               
+##  [51] miniUI_0.1.1.1             
+##  [52] KEGGREST_1.40.0            
+##  [53] pillar_1.9.0               
+##  [54] knitr_1.43                 
+##  [55] rjson_0.2.21               
+##  [56] boot_1.3-28.1              
+##  [57] gld_2.6.6                  
+##  [58] TCGAbiolinksGUI.data_1.20.0
+##  [59] future.apply_1.11.0        
+##  [60] codetools_0.2-19           
+##  [61] glue_1.6.2                 
+##  [62] downloader_0.4             
+##  [63] ggfun_0.1.1                
+##  [64] vctrs_0.6.3                
+##  [65] png_0.1-8                  
+##  [66] cellranger_1.1.0           
+##  [67] gtable_0.3.3               
+##  [68] cachem_1.0.8               
+##  [69] gower_1.0.1                
+##  [70] xfun_0.39                  
+##  [71] mime_0.12                  
+##  [72] S4Arrays_1.0.4             
+##  [73] prodlim_2023.03.31         
+##  [74] survival_3.5-5             
+##  [75] timeDate_4022.108          
+##  [76] iterators_1.0.14           
+##  [77] hardhat_1.3.0              
+##  [78] lava_1.7.2.1               
+##  [79] ellipsis_0.3.2             
+##  [80] ipred_0.9-14               
+##  [81] nlme_3.1-162               
+##  [82] bit64_4.0.5                
+##  [83] RcppAnnoy_0.0.21           
+##  [84] progress_1.2.2             
+##  [85] filelock_1.0.2             
+##  [86] rprojroot_2.0.3            
+##  [87] bslib_0.5.0                
+##  [88] irlba_2.3.5.1              
+##  [89] vipor_0.4.5                
+##  [90] rpart_4.1.19               
+##  [91] colorspace_2.1-0           
+##  [92] DBI_1.1.3                  
+##  [93] nnet_7.3-19                
+##  [94] DNAcopy_1.74.1             
+##  [95] Exact_3.2                  
+##  [96] tidyselect_1.2.0           
+##  [97] bit_4.0.5                  
+##  [98] compiler_4.3.1             
+##  [99] curl_5.0.1                 
+## [100] rvest_1.0.3                
+## [101] expm_0.999-7               
+## [102] xml2_1.3.5                 
+## [103] desc_1.4.2                 
+## [104] DelayedArray_0.26.6        
+## [105] bookdown_0.34              
+## [106] scales_1.2.1               
+## [107] rappdirs_0.3.3             
+## [108] digest_0.6.33              
+## [109] rmarkdown_2.23             
+## [110] XVector_0.40.0             
+## [111] htmltools_0.5.5            
+## [112] pkgconfig_2.0.3            
+## [113] MatrixGenerics_1.12.2      
+## [114] highr_0.10                 
+## [115] dbplyr_2.3.3               
+## [116] fastmap_1.1.1              
+## [117] rlang_1.1.1                
+## [118] GlobalOptions_0.1.2        
+## [119] shiny_1.7.4.1              
+## [120] farver_2.1.1               
+## [121] jquerylib_0.1.4            
+## [122] jsonlite_1.8.7             
+## [123] ModelMetrics_1.2.2.2       
+## [124] R.oo_1.25.0                
+## [125] RCurl_1.98-1.12            
+## [126] magrittr_2.0.3             
+## [127] GenomeInfoDbData_1.2.10    
+## [128] ggplotify_0.1.1            
+## [129] munsell_0.5.0              
+## [130] Rcpp_1.0.11                
+## [131] ape_5.7-1                  
+## [132] stringi_1.7.12             
+## [133] rootSolve_1.8.2.3          
+## [134] zlibbioc_1.46.0            
+## [135] MASS_7.3-60                
+## [136] plyr_1.8.8                 
+## [137] shinyFiles_0.9.3           
+## [138] parallel_4.3.1             
+## [139] listenv_0.9.0              
+## [140] lmom_2.9                   
+## [141] semver_0.2.0               
+## [142] Biostrings_2.68.1          
+## [143] splines_4.3.1              
+## [144] hms_1.1.3                  
+## [145] ggsignif_0.6.4             
+## [146] reshape2_1.4.4             
+## [147] biomaRt_2.56.1             
+## [148] futile.options_1.0.1       
+## [149] XML_3.99-0.14              
+## [150] evaluate_0.21              
+## [151] stevedore_0.9.6            
+## [152] lambda.r_1.2.4             
+## [153] httpuv_1.6.11              
+## [154] tzdb_0.4.0                 
+## [155] foreach_1.5.2              
+## [156] future_1.33.0              
+## [157] clue_0.3-64                
+## [158] xtable_1.8-4               
+## [159] broom_1.0.5                
+## [160] e1071_1.7-13               
+## [161] tidytree_0.4.2             
+## [162] later_1.3.1                
+## [163] rstatix_0.7.2              
+## [164] class_7.3-22               
+## [165] aplot_0.1.10               
+## [166] memoise_2.0.1              
+## [167] beeswarm_0.4.0             
+## [168] AnnotationDbi_1.62.2       
+## [169] cluster_2.1.4              
+## [170] timechange_0.2.0           
+## [171] globals_0.16.2</code></pre>
 <div id="dockerfile" class="section level2 hasAnchor" number="20.1">
 <h2><span class="header-section-number">20.1</span> Dockerfile<a href="session-info.html#dockerfile" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="session-info.html#cb148-1" tabindex="-1"></a><span class="fu">require</span>(containerit)</span>
-<span id="cb148-2"><a href="session-info.html#cb148-2" tabindex="-1"></a>dockerfile <span class="ot">=</span> <span class="fu">dockerfile</span>(<span class="at">from =</span> utils<span class="sc">::</span><span class="fu">sessionInfo</span>(),</span>
-<span id="cb148-3"><a href="session-info.html#cb148-3" tabindex="-1"></a>                        <span class="at">versioned_libs =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb148-4"><a href="session-info.html#cb148-4" tabindex="-1"></a>                        <span class="at">versioned_packages =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## INFO [2023-07-13 16:10:16] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:16] Trying to determine system requirements for the package(s) &#39;BiocGenerics&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:17] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:17] Trying to determine system requirements for the package(s) &#39;caret&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:18] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:18] Trying to determine system requirements for the package(s) &#39;circlize&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:19] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:19] Trying to determine system requirements for the package(s) &#39;ComplexHeatmap&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:20] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:20] Trying to determine system requirements for the package(s) &#39;cowplot&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:20] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:20] Trying to determine system requirements for the package(s) &#39;data.table&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:21] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:21] Trying to determine system requirements for the package(s) &#39;DescTools&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:22] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:22] Trying to determine system requirements for the package(s) &#39;dplyr&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:23] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:23] Trying to determine system requirements for the package(s) &#39;forcats&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:24] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:24] Trying to determine system requirements for the package(s) &#39;GenomeInfoDb&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:25] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:25] Trying to determine system requirements for the package(s) &#39;GenomicRanges&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:26] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:26] Trying to determine system requirements for the package(s) &#39;ggbeeswarm&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:26] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:26] Trying to determine system requirements for the package(s) &#39;ggdendro&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:27] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:27] Trying to determine system requirements for the package(s) &#39;ggplot2&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:28] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:28] Trying to determine system requirements for the package(s) &#39;ggpubr&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:29] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:29] Trying to determine system requirements for the package(s) &#39;ggrastr&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:30] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:30] Trying to determine system requirements for the package(s) &#39;ggrepel&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:31] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:31] Trying to determine system requirements for the package(s) &#39;ggsci&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:32] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:32] Trying to determine system requirements for the package(s) &#39;ggthemes&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:32] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:32] Trying to determine system requirements for the package(s) &#39;ggtree&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:33] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:33] Trying to determine system requirements for the package(s) &#39;gridExtra&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:34] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:34] Trying to determine system requirements for the package(s) &#39;ineq&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:35] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:35] Trying to determine system requirements for the package(s) &#39;IRanges&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:36] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:36] Trying to determine system requirements for the package(s) &#39;lattice&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:37] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:37] Trying to determine system requirements for the package(s) &#39;lubridate&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:38] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:38] Trying to determine system requirements for the package(s) &#39;maftools&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:38] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:38] Trying to determine system requirements for the package(s) &#39;Matrix&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:39] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:39] Trying to determine system requirements for the package(s) &#39;patchwork&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:40] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:40] Trying to determine system requirements for the package(s) &#39;Polychrome&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:41] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:41] Trying to determine system requirements for the package(s) &#39;pROC&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:42] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:42] Trying to determine system requirements for the package(s) &#39;purrr&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:43] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:43] Trying to determine system requirements for the package(s) &#39;randomForest&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:44] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:44] Trying to determine system requirements for the package(s) &#39;RColorBrewer&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:44] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:44] Trying to determine system requirements for the package(s) &#39;readr&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:45] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:45] Trying to determine system requirements for the package(s) &#39;S4Vectors&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:46] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:46] Trying to determine system requirements for the package(s) &#39;stringr&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:47] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:47] Trying to determine system requirements for the package(s) &#39;TCGAbiolinks&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:48] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:48] Trying to determine system requirements for the package(s) &#39;tibble&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:49] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:49] Trying to determine system requirements for the package(s) &#39;tidyr&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:50] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:50] Trying to determine system requirements for the package(s) &#39;tidyverse&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:50] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:50] Trying to determine system requirements for the package(s) &#39;treeio&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:51] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:51] Trying to determine system requirements for the package(s) &#39;uwot&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:52] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:52] Trying to determine system requirements for the package(s) &#39;viridis&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:53] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
-## INFO [2023-07-13 16:10:53] Trying to determine system requirements for the package(s) &#39;viridisLite&#39; from sysreqs online DB
-## INFO [2023-07-13 16:10:54] Versioned packages enabled, installing &#39;versions&#39;
-## INFO [2023-07-13 16:10:54] Adding versioned CRAN packages: lubridate, forcats, purrr, tibble, tidyverse, caret, lattice, pROC, randomForest, DescTools, uwot, Matrix, ineq, readr, stringr, tidyr, dplyr, ggrastr, Polychrome, circlize, ggrepel, ggbeeswarm, patchwork, ggdendro, RColorBrewer, viridis, viridisLite, ggsci, ggthemes, ggpubr, cowplot, gridExtra, ggplot2, data.table
-## WARN [2023-07-13 16:10:54] Adding versioned Bioconductor packages not supported: TCGAbiolinks, maftools, treeio, GenomicRanges, GenomeInfoDb, IRanges, S4Vectors, BiocGenerics, ComplexHeatmap, ggtree
-## INFO [2023-07-13 16:10:54] Adding Bioconductor packages: BiocGenerics, ComplexHeatmap, GenomeInfoDb, GenomicRanges, ggtree, IRanges, maftools, S4Vectors, TCGAbiolinks, treeio
-## INFO [2023-07-13 16:10:54] Created Dockerfile-Object based on sessionInfo</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="session-info.html#cb150-1" tabindex="-1"></a><span class="fu">print</span>(dockerfile)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="session-info.html#cb146-1" tabindex="-1"></a><span class="fu">require</span>(containerit)</span>
+<span id="cb146-2"><a href="session-info.html#cb146-2" tabindex="-1"></a>dockerfile <span class="ot">=</span> <span class="fu">dockerfile</span>(<span class="at">from =</span> utils<span class="sc">::</span><span class="fu">sessionInfo</span>(),</span>
+<span id="cb146-3"><a href="session-info.html#cb146-3" tabindex="-1"></a>                        <span class="at">versioned_libs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb146-4"><a href="session-info.html#cb146-4" tabindex="-1"></a>                        <span class="at">versioned_packages =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## INFO [2023-08-17 12:18:20] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:20] Trying to determine system requirements for the package(s) &#39;BiocGenerics&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:21] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:21] Trying to determine system requirements for the package(s) &#39;caret&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:22] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:22] Trying to determine system requirements for the package(s) &#39;circlize&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:23] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:23] Trying to determine system requirements for the package(s) &#39;ComplexHeatmap&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:24] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:24] Trying to determine system requirements for the package(s) &#39;cowplot&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:25] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:25] Trying to determine system requirements for the package(s) &#39;data.table&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:26] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:26] Trying to determine system requirements for the package(s) &#39;DescTools&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:27] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:27] Trying to determine system requirements for the package(s) &#39;dplyr&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:28] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:28] Trying to determine system requirements for the package(s) &#39;forcats&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:28] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:28] Trying to determine system requirements for the package(s) &#39;GenomeInfoDb&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:29] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:29] Trying to determine system requirements for the package(s) &#39;GenomicRanges&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:31] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:31] Trying to determine system requirements for the package(s) &#39;ggbeeswarm&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:32] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:32] Trying to determine system requirements for the package(s) &#39;ggdendro&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:33] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:33] Trying to determine system requirements for the package(s) &#39;ggplot2&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:33] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:33] Trying to determine system requirements for the package(s) &#39;ggpubr&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:34] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:34] Trying to determine system requirements for the package(s) &#39;ggrastr&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:35] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:35] Trying to determine system requirements for the package(s) &#39;ggrepel&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:37] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:37] Trying to determine system requirements for the package(s) &#39;ggsci&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:38] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:38] Trying to determine system requirements for the package(s) &#39;ggthemes&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:39] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:39] Trying to determine system requirements for the package(s) &#39;ggtree&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:40] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:40] Trying to determine system requirements for the package(s) &#39;gridExtra&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:41] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:41] Trying to determine system requirements for the package(s) &#39;ineq&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:42] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:42] Trying to determine system requirements for the package(s) &#39;IRanges&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:43] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:43] Trying to determine system requirements for the package(s) &#39;lattice&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:43] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:43] Trying to determine system requirements for the package(s) &#39;lubridate&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:44] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:44] Trying to determine system requirements for the package(s) &#39;maftools&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:45] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:45] Trying to determine system requirements for the package(s) &#39;Matrix&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:46] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:46] Trying to determine system requirements for the package(s) &#39;patchwork&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:47] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:47] Trying to determine system requirements for the package(s) &#39;pbapply&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:48] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:48] Trying to determine system requirements for the package(s) &#39;Polychrome&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:49] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:49] Trying to determine system requirements for the package(s) &#39;pROC&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:50] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:50] Trying to determine system requirements for the package(s) &#39;purrr&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:51] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:51] Trying to determine system requirements for the package(s) &#39;randomForest&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:52] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:52] Trying to determine system requirements for the package(s) &#39;RColorBrewer&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:53] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:53] Trying to determine system requirements for the package(s) &#39;readr&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:54] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:54] Trying to determine system requirements for the package(s) &#39;S4Vectors&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:55] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:55] Trying to determine system requirements for the package(s) &#39;stringr&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:56] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:56] Trying to determine system requirements for the package(s) &#39;TCGAbiolinks&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:56] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:56] Trying to determine system requirements for the package(s) &#39;tibble&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:57] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:57] Trying to determine system requirements for the package(s) &#39;tidyr&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:58] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:58] Trying to determine system requirements for the package(s) &#39;tidyverse&#39; from sysreqs online DB
+## INFO [2023-08-17 12:18:59] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:18:59] Trying to determine system requirements for the package(s) &#39;treeio&#39; from sysreqs online DB
+## INFO [2023-08-17 12:19:00] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:19:00] Trying to determine system requirements for the package(s) &#39;uwot&#39; from sysreqs online DB
+## INFO [2023-08-17 12:19:01] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:19:01] Trying to determine system requirements for the package(s) &#39;viridis&#39; from sysreqs online DB
+## INFO [2023-08-17 12:19:02] Going online? TRUE  ... to retrieve system dependencies (sysreq-api)
+## INFO [2023-08-17 12:19:02] Trying to determine system requirements for the package(s) &#39;viridisLite&#39; from sysreqs online DB
+## INFO [2023-08-17 12:19:03] Versioned packages enabled, installing &#39;versions&#39;
+## INFO [2023-08-17 12:19:03] Adding versioned CRAN packages: ggthemes, gridExtra, lubridate, forcats, purrr, tibble, tidyverse, caret, lattice, pROC, randomForest, DescTools, uwot, Matrix, ineq, readr, stringr, dplyr, ggrastr, Polychrome, circlize, ggrepel, ggbeeswarm, patchwork, ggdendro, ggpubr, viridis, viridisLite, pbapply, tidyr, RColorBrewer, ggsci, cowplot, ggplot2, data.table
+## WARN [2023-08-17 12:19:03] Adding versioned Bioconductor packages not supported: treeio, GenomicRanges, GenomeInfoDb, IRanges, S4Vectors, BiocGenerics, ggtree, TCGAbiolinks, maftools, ComplexHeatmap
+## INFO [2023-08-17 12:19:03] Adding Bioconductor packages: BiocGenerics, ComplexHeatmap, GenomeInfoDb, GenomicRanges, ggtree, IRanges, maftools, S4Vectors, TCGAbiolinks, treeio
+## INFO [2023-08-17 12:19:03] Created Dockerfile-Object based on sessionInfo</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="session-info.html#cb148-1" tabindex="-1"></a><span class="fu">print</span>(dockerfile)</span></code></pre></div>
 <pre><code>## FROM rocker/r-ver:4.3.1
 ## LABEL maintainer=&quot;luukharbers&quot;
 ## RUN export DEBIAN_FRONTEND=noninteractive; apt-get -y update \
 ##   &amp;&amp; apt-get install -y zlib1g-dev
 ## RUN [&quot;install2.r&quot;, &quot;versions&quot;]
-## RUN [&quot;Rscript&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;caret&#39;, &#39;6.0-94&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;circlize&#39;, &#39;0.4.15&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;cowplot&#39;, &#39;1.1.1&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;data.table&#39;, &#39;1.14.8&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;DescTools&#39;, &#39;0.99.49&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;dplyr&#39;, &#39;1.1.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;forcats&#39;, &#39;1.0.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggbeeswarm&#39;, &#39;0.7.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggdendro&#39;, &#39;0.1.23&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggplot2&#39;, &#39;3.4.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggpubr&#39;, &#39;0.6.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggrastr&#39;, &#39;1.0.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggrepel&#39;, &#39;0.9.3&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggsci&#39;, &#39;3.0.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggthemes&#39;, &#39;4.2.4&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;gridExtra&#39;, &#39;2.3&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ineq&#39;, &#39;0.2-13&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;lattice&#39;, &#39;0.21-8&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;lubridate&#39;, &#39;1.9.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;Matrix&#39;, &#39;1.6-0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;patchwork&#39;, &#39;1.1.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;Polychrome&#39;, &#39;1.5.1&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;pROC&#39;, &#39;1.18.4&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;purrr&#39;, &#39;1.0.1&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;randomForest&#39;, &#39;4.7-1.1&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;RColorBrewer&#39;, &#39;1.1-3&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;readr&#39;, &#39;2.1.4&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;stringr&#39;, &#39;1.5.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;tibble&#39;, &#39;3.2.1&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;tidyr&#39;, &#39;1.3.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;tidyverse&#39;, &#39;2.0.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;uwot&#39;, &#39;0.1.16&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;viridis&#39;, &#39;0.6.3&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;viridisLite&#39;, &#39;0.4.2&#39;)&quot;]
+## RUN [&quot;Rscript&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;caret&#39;, &#39;6.0-94&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;circlize&#39;, &#39;0.4.15&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;cowplot&#39;, &#39;1.1.1&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;data.table&#39;, &#39;1.14.8&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;DescTools&#39;, &#39;0.99.49&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;dplyr&#39;, &#39;1.1.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;forcats&#39;, &#39;1.0.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggbeeswarm&#39;, &#39;0.7.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggdendro&#39;, &#39;0.1.23&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggplot2&#39;, &#39;3.4.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggpubr&#39;, &#39;0.6.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggrastr&#39;, &#39;1.0.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggrepel&#39;, &#39;0.9.3&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggsci&#39;, &#39;3.0.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ggthemes&#39;, &#39;4.2.4&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;gridExtra&#39;, &#39;2.3&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;ineq&#39;, &#39;0.2-13&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;lattice&#39;, &#39;0.21-8&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;lubridate&#39;, &#39;1.9.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;Matrix&#39;, &#39;1.6-0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;patchwork&#39;, &#39;1.1.2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;pbapply&#39;, &#39;1.7-2&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;Polychrome&#39;, &#39;1.5.1&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;pROC&#39;, &#39;1.18.4&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;purrr&#39;, &#39;1.0.1&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;randomForest&#39;, &#39;4.7-1.1&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;RColorBrewer&#39;, &#39;1.1-3&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;readr&#39;, &#39;2.1.4&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;stringr&#39;, &#39;1.5.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;tibble&#39;, &#39;3.2.1&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;tidyr&#39;, &#39;1.3.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;tidyverse&#39;, &#39;2.0.0&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;uwot&#39;, &#39;0.1.16&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;viridis&#39;, &#39;0.6.3&#39;)&quot;, &quot;-e&quot;, &quot;versions::install.versions(&#39;viridisLite&#39;, &#39;0.4.2&#39;)&quot;]
 ## RUN [&quot;install2.r&quot;, &quot;-r https://bioconductor.org/packages/3.17/bioc -r https://bioconductor.org/packages/3.17/data/annotation -r https://bioconductor.org/packages/3.17/data/experiment -r https://bioconductor.org/packages/3.17/workflows&quot;, &quot;BiocGenerics&quot;, &quot;ComplexHeatmap&quot;, &quot;GenomeInfoDb&quot;, &quot;GenomicRanges&quot;, &quot;ggtree&quot;, &quot;IRanges&quot;, &quot;maftools&quot;, &quot;S4Vectors&quot;, &quot;TCGAbiolinks&quot;, &quot;treeio&quot;]
 ## WORKDIR /payload/
 ## CMD [&quot;R&quot;]</code></pre>
